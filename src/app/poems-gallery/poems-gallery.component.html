@@ -1,0 +1,20 @@
+<div class="row" style="height: 100%">
+  <div class="col-md-3">
+    <mat-nav-list>
+      <mat-list-item *ngIf="adminUploadVisible()">
+        <a matLine>
+          <label for="file" class="btn btn-dark">Add Poem</label>
+          <input type="file" accept=".doc, application/msword" id="file" (change)="uploadPoem($event.target.files)" style="visibility:hidden;">
+        </a>
+        <mat-icon>publish</mat-icon>
+      </mat-list-item>
+      <mat-list-item *ngFor="let poemName of poemsName" [routerLink]="[poemName]" routerLinkActive="active">
+        <a matLine style="cursor: pointer;">{{ poemName }}</a>
+        <mat-icon>label</mat-icon>
+      </mat-list-item>
+    </mat-nav-list>
+  </div>
+  <div class="col-md-9">
+    <router-outlet></router-outlet>
+  </div>
+</div>

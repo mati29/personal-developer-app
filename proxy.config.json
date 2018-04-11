@@ -1,0 +1,17 @@
+{
+  "/users/*": {
+    "target": "http://localhost:8080/personal-developer",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/token/*": {
+    "target": "http://localhost:8080/personal-developer",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/files/*": {
+    "target": "http://localhost:8080/personal-developer",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

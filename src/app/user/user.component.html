@@ -1,0 +1,46 @@
+<div class="example-container mat-elevation-z8">
+
+  <mat-table
+    *ngIf="(
+            dataSources |
+            columnFilter:filterOfName:'firstName' |
+            columnFilter:filterOfLast:'lastName' |
+            columnFilter:filterOfMail:'email'
+            )
+    as filterSource"
+    [dataSource]="filterSource"
+  >
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> User Id </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef> <input type="search" matInput placeholder="First Name..." [(ngModel)]="filterOfName" name="filterOfName"> </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef> <input type="search" matInput placeholder="Last Name..." [(ngModel)]="filterOfLast" name="filterOfLast"> </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> <input type="search" matInput placeholder="Email..." [(ngModel)]="filterOfMail" name="filterOfMail"> </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="button">
+      <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+      <mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
+        <button mat-button (click)="deleteUser(element.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

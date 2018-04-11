@@ -1,0 +1,93 @@
+<!--<div class="col-md-6">
+  <h2 class="text-center">Add User</h2>
+  <form>
+    <div class="form-group">
+      <label for="email">Email address:</label>
+      <input type="email" [(ngModel)]="user.email" placeholder="Email" name="email" class="form-control" id="email">
+    </div>
+
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input [(ngModel)]="user.firstName" placeholder="First Name" name="firstName" class="form-control" id="firstName">
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input [(ngModel)]="user.lastName" placeholder="Last name" name="lastName" class="form-control" id="lastName">
+    </div>
+
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input [(ngModel)]="user.username" placeholder="Username" name="username" class="form-control" id="username">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password"[(ngModel)]="user.password" placeholder="Password" name="password" class="form-control" id="password">
+    </div>
+
+    <button class="btn btn-success" (click)="createUser()">Create</button>
+  </form>
+</div>-->
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Add User</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="userForm">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field>
+              <input id="firstName" formControlName="firstName" matInput placeholder="Enter your first name">
+              <mat-error *ngIf="userForm.controls['firstName'].errors?.required &&  userForm.controls['firstName'].touched">This field is required!</mat-error>
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field>
+              <input id="lastName" formControlName="lastName" matInput placeholder="Enter your last name">
+              <mat-error *ngIf="userForm.controls['lastName'].errors?.required &&  userForm.controls['lastName'].touched">This field is required!</mat-error>
+              <mat-icon matSuffix>person_outline</mat-icon>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field>
+              <input id="email" formControlName="email" matInput placeholder="Enter your email">
+              <mat-error *ngIf="userForm.controls['email'].errors?.email &&  userForm.controls['email'].touched">This email address is wrong!</mat-error>
+              <mat-error *ngIf="userForm.controls['email'].errors?.required &&  userForm.controls['email'].touched">This field is required!</mat-error>
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field>
+              <input id="username" formControlName="username" matInput placeholder="Enter your username">
+              <mat-icon matSuffix>person_pin</mat-icon>
+              <mat-error *ngIf="userForm.controls['username'].errors?.required &&  userForm.controls['username'].touched">This field is required!</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input id="password" formControlName="password" matInput placeholder="Enter your password"  [type]="hidePassword ? 'password' : 'text'">
+              <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+              <mat-error *ngIf="userForm.controls['password'].errors?.min&&  userForm.controls['password'].touched">This password is too short!</mat-error>
+              <mat-error *ngIf="userForm.controls['password'].errors?.required &&  userForm.controls['password'].touched">This field is required!</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="createUser()" color="primary" [disabled]="!userForm.valid">Create  <mat-icon matSuffix>person_add</mat-icon></button>
+  </mat-card-actions>
+</mat-card>
