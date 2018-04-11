@@ -18,8 +18,6 @@ import {AuthService} from './auth/auth.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {ColumnFilterPipe} from './user/filter-pipes/column-filter.pipe';
-import { FileUploadComponent } from './file-upload/file-upload.component';
-import { FileDownloadComponent } from './file-download/file-download.component';
 import { PoemsGalleryComponent } from './poems-gallery/poems-gallery.component';
 import {PoemService} from './poems-gallery/poem-service/poem-service';
 import { PoemDisplayComponent } from './poems-gallery/poem-display/poem-display.component';
@@ -39,8 +37,6 @@ import { WhoamiComponent } from './personal-info/whoami/whoami.component';
     LoginComponent,
     NavbarComponent,
     ColumnFilterPipe,
-    FileUploadComponent,
-    FileDownloadComponent,
     PoemsGalleryComponent,
     PoemDisplayComponent,
     WelcomeGalleryComponent,

@@ -5,10 +5,8 @@
     <span class="example-spacer"></span>
     <div fxShow="true" fxHide.lt-md="true">
       <!-- The following menu items will be hidden on both SM and XS screen sizes -->
-      <a routerLink="/add" mat-button>Add User</a>
+      <a routerLink="/add" mat-button>Register</a>
       <a routerLink="/users" mat-button *ngIf="adminComponentVisible()">List Users</a><!-- Here will be all admin component -->
-      <a routerLink="/upload" mat-button>Load File</a>
-      <a routerLink="/download" mat-button>Download</a><!-- In future here will be a gallery with doc file, now for delete-->
       <a routerLink="/poems" mat-button>Poems gallery</a>
       <a routerLink="/personal" mat-button>Personal Information</a>
     </div>

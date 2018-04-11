@@ -19,7 +19,7 @@ export class AddUserComponent implements OnInit{
 
   ngOnInit() {
     this.userForm = new FormGroup({
-      'firstName' : new FormControl(null, Validators.required),//utrwalanie nazw maybe
+      'firstName' : new FormControl(null, Validators.required),//TODO names field stored?
       'lastName' : new FormControl(null, Validators.required),
       'email' : new FormControl(null, [Validators.required, Validators.email]),
       'username' : new FormControl(null, Validators.required),//TODO sprawdzanie uniqalnośći usera websocket?
