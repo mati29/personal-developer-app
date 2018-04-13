@@ -1,0 +1,46 @@
+<div class="example-container mat-elevation-z8">
+<!--pipes to class name splice maybe-->
+<!--to all field button to one event which send http with data-->
+<!--get length from webservice...-->
+<!--to paginator event too...-->
+<!--and asc desc property and send them to sort too...-->
+  <mat-paginator [length]="100"
+                 [pageSize]="limit"
+                 [pageSizeOptions]="[5, 10, 25, 100]"
+                 (page)="onPaginateChange($event)">
+  </mat-paginator>
+  <mat-table [dataSource]="dataSources">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef (click)="searchByColumn('id')"> User Id </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef (click)="searchByColumn('type')"> Type</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef (click)="searchByColumn('username')"> Username </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="clas">
+      <mat-header-cell *matHeaderCellDef (click)="searchByColumn('clas')"> Class </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.clas}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="method">
+      <mat-header-cell *matHeaderCellDef (click)="searchByColumn('method')"> Method </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.method}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="timestamp">
+      <mat-header-cell *matHeaderCellDef (click)="searchByColumn('timestamp')"> Timestamp </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.timestamp}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

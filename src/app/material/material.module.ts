@@ -5,7 +5,7 @@ import {
   MatCardModule, MatChipsModule, MatExpansionModule, MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatListModule,
+  MatListModule, MatPaginatorModule,
   MatProgressSpinnerModule,
   MatSidenavModule, MatSnackBarModule,
   MatTableModule,
@@ -29,7 +29,8 @@ import {
     MatSnackBarModule,
     MatExpansionModule,
     MatChipsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatPaginatorModule
   ],
   exports: [
     CommonModule,
@@ -46,7 +47,8 @@ import {
     MatSnackBarModule,
     MatExpansionModule,
     MatChipsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatPaginatorModule
   ],
 })
 export class MaterialModule { }

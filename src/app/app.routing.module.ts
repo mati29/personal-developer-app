@@ -13,9 +13,11 @@ import {WelcomeInfoComponent} from './personal-info/welcome-info/welcome-info.co
 import {CurriculumVitaeComponent} from './personal-info/curriculum-vitae/curriculum-vitae.component';
 import {ExternalInfoLinksComponent} from './personal-info/external-info-links/external-info-links.component';
 import {WhoamiComponent} from './personal-info/whoami/whoami.component';
+import {AuditComponent} from './audit/audit.component';
 
 const routes: Routes = [
   { path: 'users', component: UserComponent, canActivate: [AdminGuard] },
+  { path: 'audit', component: AuditComponent, canActivate: [AdminGuard] },
   { path: 'add', component: AddUserComponent },
   { path: 'login', component: LoginComponent },
   { path: 'poems', component: PoemsGalleryComponent, children: [

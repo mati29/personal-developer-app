@@ -27,6 +27,8 @@ import { WelcomeInfoComponent } from './personal-info/welcome-info/welcome-info.
 import { CurriculumVitaeComponent } from './personal-info/curriculum-vitae/curriculum-vitae.component';
 import { ExternalInfoLinksComponent } from './personal-info/external-info-links/external-info-links.component';
 import { WhoamiComponent } from './personal-info/whoami/whoami.component';
+import { AuditComponent } from './audit/audit.component';
+import {AuditService} from './audit/audit.service';
 
 
 @NgModule({
@@ -44,7 +46,8 @@ import { WhoamiComponent } from './personal-info/whoami/whoami.component';
     WelcomeInfoComponent,
     CurriculumVitaeComponent,
     ExternalInfoLinksComponent,
-    WhoamiComponent
+    WhoamiComponent,
+    AuditComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,7 @@ import { WhoamiComponent } from './personal-info/whoami/whoami.component';
     PoemService,
     TokenStorage,
     AuthService,
+    AuditService,
     {provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]

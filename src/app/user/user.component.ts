@@ -31,6 +31,7 @@ export class UserComponent implements OnInit {
       .subscribe( (data: User[]) => {
         //this.orgData = data;
        // this.filterData = data;
+        console.log(data);
         this.dataSources.data = data;
       });
   }
