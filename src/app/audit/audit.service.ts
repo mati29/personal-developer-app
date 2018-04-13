@@ -13,4 +13,8 @@ export class AuditService {
     return this.http.post(this.auditUrl, auditPageRange);
   }
 
+  public getAuditListSize() {
+    return this.http.get(this.auditUrl+'/count');
+  }
+
 }

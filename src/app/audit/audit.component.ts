@@ -17,10 +17,13 @@ export class AuditComponent implements OnInit {
   page: number = 0;
   column: string = 'id';
   reverse: boolean = false;
+  lenght: number = 0;
 
   constructor(private auditService: AuditService) { console.log('constr');}
 
   ngOnInit() {
+    this.auditService.getAuditListSize()
+      .subscribe( (length: number) => {this.lenght = length});
     this.searchByColumn(this.column);
   }
 
