@@ -16,6 +16,7 @@ export class AuditComponent implements OnInit {
   limit: number = 5;
   page: number = 0;
   column: string = 'id';
+  reverse: boolean = false;
 
   constructor(private auditService: AuditService) { console.log('constr');}
 
@@ -24,8 +25,10 @@ export class AuditComponent implements OnInit {
   }
 
   searchByColumn(column: string) {
+    if(this.column === column)
+      this.reverse = !this.reverse;
     this.column = column;
-    this.auditService.getAuditByCriteria({limit: this.limit, column: this.column, page: this.page})
+    this.auditService.getAuditByCriteria({limit: this.limit, column: this.column, page: this.page, reverse: this.reverse})
       .subscribe( (data: Audit[]) => {
         this.dataSources.data = data;
       });
