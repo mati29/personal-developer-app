@@ -20,7 +20,7 @@ export class AuditComponent implements OnInit {
   reverse: boolean = true;
   lenght: number = 0;
 
-  activationFilter: boolean = false;
+  activationFilter: boolean = true;
 
   dataForTableChanges: Observable<any>;
 

@@ -15,9 +15,9 @@ export class AuditPipePipe implements PipeTransform {//only class refactor namin
     value.forEach((a: Audit) => {
       filterClass.data.push(new Audit(a))
     });
-    filterClass.data.forEach((a: Audit) =>
-      a['clas'] = a['clas'].slice(a['clas'].lastIndexOf('.')+1)
-    );
+    filterClass.data.forEach((a: Audit) => {
+          a['clas'] = a['clas'].slice(a['clas'].lastIndexOf('.') + 1,a['clas'].indexOf('$'))
+    });
     return filterClass;
   }
 
