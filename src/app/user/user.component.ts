@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {User} from './user.model';
 import {UserService} from './user.service';
@@ -14,9 +14,6 @@ export class UserComponent implements OnInit {
   displayedColumns = ['id', 'firstName', 'lastName', 'email', 'button'];
   dataSources = new MatTableDataSource();
 
-  //orgData: any;
-  //filterData: any;
-
   filterOfName = '';
   filterOfLast = '';
   filterOfMail = '';
@@ -29,9 +26,6 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.userService.getUsers()
       .subscribe( (data: User[]) => {
-        //this.orgData = data;
-       // this.filterData = data;
-        console.log(data);
         this.dataSources.data = data;
       });
   }
@@ -40,13 +34,7 @@ export class UserComponent implements OnInit {
     this.userService.deleteUser(userId)
       .subscribe( data => {
         this.dataSources.data = this.dataSources.data.filter((u: User) => u.id !== userId);
-        //this.dataSource.data = this.orgData ;
       });
   }
-
-  /*searchByName() {
-    this.filterData = this.orgData.filter( (u: User) => u.firstName.startsWith(this.filterOfName));
-    this.dataSource.data = this.filterData;
-  }*/
 
 }

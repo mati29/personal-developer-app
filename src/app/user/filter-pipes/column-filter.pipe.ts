@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 import {User} from '../user.model';
 import {MatTableDataSource} from '@angular/material';
 
