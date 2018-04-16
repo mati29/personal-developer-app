@@ -29,6 +29,7 @@ import { ExternalInfoLinksComponent } from './personal-info/external-info-links/
 import { WhoamiComponent } from './personal-info/whoami/whoami.component';
 import { AuditComponent } from './audit/audit.component';
 import {AuditService} from './audit/audit.service';
+import { AuditPipePipe } from './audit/audit-pipe.pipe';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import {AuditService} from './audit/audit.service';
     CurriculumVitaeComponent,
     ExternalInfoLinksComponent,
     WhoamiComponent,
-    AuditComponent
+    AuditComponent,
+    AuditPipePipe
   ],
   imports: [
     BrowserModule,

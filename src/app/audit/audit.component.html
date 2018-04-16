@@ -5,7 +5,7 @@
                  [pageSizeOptions]="[5, 10, 25, 100]"
                  (page)="onPaginateChange($event)">
   </mat-paginator>
-  <mat-table [dataSource]="dataSources">
+  <mat-table *ngIf="((dataForTableChanges | async | auditPipe:activationFilter)) as filterSource" [dataSource]="filterSource">
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef (click)="searchByColumn('id')"> User Id </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
@@ -22,7 +22,11 @@
     </ng-container>
 
     <ng-container matColumnDef="clas">
-      <mat-header-cell *matHeaderCellDef (click)="searchByColumn('clas')"> Class </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef (click)="searchByColumn('clas')"> Class
+            <button mat-button (click)="$event.stopPropagation()">
+              <mat-icon (click)="activationFilter = !activationFilter">{{activationFilter ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </button>
+      </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.clas}} </mat-cell>
     </ng-container>
 

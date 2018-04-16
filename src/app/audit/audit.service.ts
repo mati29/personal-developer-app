@@ -1,6 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {AuditPageRange} from './DTO/audit-page-range.model';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class AuditService {
@@ -9,7 +10,7 @@ export class AuditService {
 
   private auditUrl = '/audit';
 
-  public getAuditByCriteria(auditPageRange: AuditPageRange) {
+  public getAuditByCriteria(auditPageRange: AuditPageRange): Observable<any> {
     return this.http.post(this.auditUrl, auditPageRange);
   }
 

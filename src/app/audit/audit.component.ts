@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
 import {AuditService} from './audit.service';
 import {Audit} from './audit.model';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-audit',
@@ -16,22 +17,31 @@ export class AuditComponent implements OnInit {
   limit: number = 5;
   page: number = 0;
   column: string = 'id';
-  reverse: boolean = false;
+  reverse: boolean = true;
   lenght: number = 0;
 
-  constructor(private auditService: AuditService) { console.log('constr');}
+  activationFilter: boolean = false;
+
+  dataForTableChanges: Observable<any>;
+
+  constructor(private auditService: AuditService) {}
 
   ngOnInit() {
     this.auditService.getAuditListSize()
       .subscribe( (length: number) => {this.lenght = length});
-    this.searchByColumn(this.column);
+    this.search();
   }
 
   searchByColumn(column: string) {
     if(this.column === column)
       this.reverse = !this.reverse;
     this.column = column;
-    this.auditService.getAuditByCriteria({limit: this.limit, column: this.column, page: this.page, reverse: this.reverse})
+    this.search();
+  }
+
+  search(){
+    this.dataForTableChanges = this.auditService.getAuditByCriteria({limit: this.limit, column: this.column, page: this.page, reverse: this.reverse});
+    this.dataForTableChanges
       .subscribe( (data: Audit[]) => {
         this.dataSources.data = data;
       });
@@ -40,7 +50,7 @@ export class AuditComponent implements OnInit {
   onPaginateChange(event){
     this.page = event.pageIndex;
     this.limit = event.pageSize;
-    this.searchByColumn(this.column);
+    this.search();
   }
 
 }
