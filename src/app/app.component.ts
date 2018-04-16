@@ -9,29 +9,7 @@ import {Subscription} from 'rxjs/Subscription';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent {
   title = 'app';
 
-  authenticated: boolean; //TODO change for async operation
-  subscription: Subscription;
-
-  constructor(private router: Router, private authService: AuthService, private tokenStorage: TokenStorage) {
-  }
-
-  ngOnInit() {
-    this.subscription = this.tokenStorage.tokenChanged.subscribe(
-      (tokenExist: boolean) => {
-        this.authenticated = tokenExist;
-      }
-    );
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
-  logout(): void {
-    this.tokenStorage.signOut();
-    this.router.navigate(['/']);
-  }
 }
