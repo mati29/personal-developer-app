@@ -9,6 +9,8 @@
           <td>
             <mat-form-field>
               <input id="firstName" formControlName="firstName" matInput placeholder="Enter your first name">
+              <mat-error *ngIf="userForm.controls['firstName'].errors?.maxlength &&  userForm.controls['firstName'].touched">This firstName is too long!</mat-error>
+              <mat-error *ngIf="userForm.controls['firstName'].errors?.minlength &&  userForm.controls['firstName'].touched">This firstName is too short!</mat-error>
               <mat-error *ngIf="userForm.controls['firstName'].errors?.required &&  userForm.controls['firstName'].touched">This field is required!</mat-error>
               <mat-icon matSuffix>person</mat-icon>
             </mat-form-field>
@@ -18,6 +20,8 @@
           <td>
             <mat-form-field>
               <input id="lastName" formControlName="lastName" matInput placeholder="Enter your last name">
+              <mat-error *ngIf="userForm.controls['lastName'].errors?.maxlength &&  userForm.controls['lastName'].touched">This lastName is too long!</mat-error>
+              <mat-error *ngIf="userForm.controls['lastName'].errors?.minlength &&  userForm.controls['lastName'].touched">This lastName is too short!</mat-error>
               <mat-error *ngIf="userForm.controls['lastName'].errors?.required &&  userForm.controls['lastName'].touched">This field is required!</mat-error>
               <mat-icon matSuffix>person_outline</mat-icon>
             </mat-form-field>
@@ -27,6 +31,7 @@
           <td>
             <mat-form-field>
               <input id="email" formControlName="email" matInput placeholder="Enter your email">
+              <mat-error *ngIf="userForm.controls['email'].errors?.maxlength &&  userForm.controls['email'].touched">This email address is too long!</mat-error>
               <mat-error *ngIf="userForm.controls['email'].errors?.email &&  userForm.controls['email'].touched">This email address is wrong!</mat-error>
               <mat-error *ngIf="userForm.controls['email'].errors?.required &&  userForm.controls['email'].touched">This field is required!</mat-error>
               <mat-icon matSuffix>email</mat-icon>
@@ -38,6 +43,8 @@
             <mat-form-field>
               <input id="username" formControlName="username" matInput placeholder="Enter your username">
               <mat-icon matSuffix>person_pin</mat-icon>
+              <mat-error *ngIf="userForm.controls['username'].errors?.maxlength &&  userForm.controls['username'].touched">This username is too long!</mat-error>
+              <mat-error *ngIf="userForm.controls['username'].errors?.minlength &&  userForm.controls['username'].touched">This username is too short!</mat-error>
               <mat-error *ngIf="userForm.controls['username'].errors?.required &&  userForm.controls['username'].touched">This field is required!</mat-error>
             </mat-form-field>
           </td>
@@ -47,7 +54,8 @@
             <mat-form-field class="example-full-width">
               <input id="password" formControlName="password" matInput placeholder="Enter your password"  [type]="hidePassword ? 'password' : 'text'">
               <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
-              <mat-error *ngIf="userForm.controls['password'].errors?.min&&  userForm.controls['password'].touched">This password is too short!</mat-error>
+              <mat-error *ngIf="userForm.controls['password'].errors?.maxlength &&  userForm.controls['password'].touched">This password is too long!</mat-error>
+              <mat-error *ngIf="userForm.controls['password'].errors?.minlength &&  userForm.controls['password'].touched">This password is too short!</mat-error>
               <mat-error *ngIf="userForm.controls['password'].errors?.required &&  userForm.controls['password'].touched">This field is required!</mat-error>
             </mat-form-field>
           </td>
@@ -60,3 +68,4 @@
     <button mat-raised-button (click)="createUser()" color="primary" [disabled]="!userForm.valid">Create  <mat-icon matSuffix>person_add</mat-icon></button>
   </mat-card-actions>
 </mat-card>
+<app-new-user *ngIf="newUser !== null" [newUser]="newUser"></app-new-user>
