@@ -41,8 +41,11 @@
         <tr>
           <td>
             <mat-form-field>
-              <input id="username" formControlName="username" matInput placeholder="Enter your username">
+              <input id="username" formControlName="username" matInput placeholder="Enter your username" (keyup)="checkUsernameUnique()">
               <mat-icon matSuffix>person_pin</mat-icon>
+              <div *ngIf="(usernameUnique | async).toString() === 'false' && userForm.controls['username'].touched">
+                <mat-error>This username is not unique!</mat-error>
+              </div>
               <mat-error *ngIf="userForm.controls['username'].errors?.maxlength &&  userForm.controls['username'].touched">This username is too long!</mat-error>
               <mat-error *ngIf="userForm.controls['username'].errors?.minlength &&  userForm.controls['username'].touched">This username is too short!</mat-error>
               <mat-error *ngIf="userForm.controls['username'].errors?.required &&  userForm.controls['username'].touched">This field is required!</mat-error>

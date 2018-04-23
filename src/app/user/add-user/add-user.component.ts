@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../user.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -8,13 +8,14 @@ import {UserError} from '../user-error.model';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/take';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })
-export class AddUserComponent implements OnInit{
+export class AddUserComponent implements OnInit, OnDestroy{
 
   userForm: FormGroup;
 
@@ -22,9 +23,12 @@ export class AddUserComponent implements OnInit{
 
   newUser: User = null;
 
+  usernameUnique: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+
   constructor(public snackBar: MatSnackBar, private router: Router, private route: ActivatedRoute, private userService: UserService) {}
 
   ngOnInit() {
+    this.usernameCheckActive();
     this.userForm = new FormGroup({
       'firstName' : new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]),
       'lastName' : new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]),
@@ -32,6 +36,11 @@ export class AddUserComponent implements OnInit{
       'username' : new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]),
       'password' : new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(255)])
     });
+    this.usernameUnique.subscribe();
+  }
+
+  ngOnDestroy() {
+    this.usernameCheckDeactive();
   }
 
   createUser(): void {
@@ -48,4 +57,18 @@ export class AddUserComponent implements OnInit{
             });
       });
   }
+
+  usernameCheckActive() {
+    this.userService.startUserWebsocketCommunication(this.usernameUnique);
+  }
+
+  usernameCheckDeactive() {
+    this.userService.stopUserWebsocketCommunication();
+  }
+
+  checkUsernameUnique() {
+    this.userService.sendUsernameMessage(this.userForm.controls['username'].value);
+  }
+
+
 }

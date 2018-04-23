@@ -31,7 +31,7 @@ const routes: Routes = [
       {path: 'links', component: ExternalInfoLinksComponent},
       {path: 'whoami', component: WhoamiComponent}
     ]
-  },
+  }
 ];
 
 @NgModule({
